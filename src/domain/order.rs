@@ -4,11 +4,11 @@ use serde::{Deserialize, Serialize};
 pub struct Order {
     #[serde(rename(serialize = "MD_CODIGO"))]
     #[serde(rename(deserialize = "MD_CODIGO"))]
-    pub codigo: String,
+    pub codigo: u64,
 
     #[serde(rename(serialize = "CMARCA"))]
     #[serde(rename(deserialize = "CMARCA"))]
-    pub marca: String,
+    pub marca: u64,
 
     #[serde(rename(serialize = "FECHAINI"))]
     #[serde(rename(deserialize = "FECHAINI"))]

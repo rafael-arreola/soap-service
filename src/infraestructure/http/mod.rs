@@ -1,5 +1,4 @@
 use actix_web::{App, HttpResponse, HttpServer, web};
-use actix_web::dev::ServiceFactory;
 use actix_web::web::ServiceConfig;
 
 mod marshal;
@@ -16,6 +15,7 @@ impl Server {
     }
 
     pub async fn run(&self) -> std::io::Result<()> {
+        println!("Server running on port {}", self.port);
         HttpServer::new(move || {
             App::new()
                 .app_data(

@@ -1,9 +1,6 @@
 use actix_web::{HttpResponse, ResponseError};
 use derive_more::{Display, Error};
 use serde::{Deserialize, Serialize};
-use tokio::sync::mpsc;
-
-use crate::domain::order::Order;
 
 #[derive(Debug, Display, Error, Serialize, Deserialize)]
 #[display(fmt = "{}", cause)]
@@ -24,22 +21,5 @@ impl ResponseError for GenericError {
 impl GenericError {
     pub fn new(code: u16, cause: String) -> Self {
         Self { code, cause }
-    }
-}
-
-// -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-// -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-// -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-
-#[derive(Clone)]
-pub struct WebData {
-    pub tx: mpsc::UnboundedSender<Vec<Order>>,
-}
-
-impl WebData {
-    pub fn new(
-        tx: mpsc::UnboundedSender<Vec<Order>>,
-    ) -> Self {
-        Self { tx }
     }
 }

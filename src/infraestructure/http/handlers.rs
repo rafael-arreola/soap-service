@@ -25,11 +25,7 @@ async fn process_json(
 
     if result.is_err() {
         return Err(
-            GenericError {
-                code: 500,
-                cause: result.err().unwrap().to_string(),
-            }
-        );
+            GenericError::new(500, result.err().unwrap().to_string()));
     }
 
     Ok(
